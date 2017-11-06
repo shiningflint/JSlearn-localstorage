@@ -35,7 +35,15 @@ function initApp() {
     names.map(function(name, index) {
       var li = document.createElement('li');
       li.innerHTML = name;
+      li.dataset.index = index;
+      li.onclick = deleteName;
       return nameList.appendChild(li);
     });
+  }
+
+  function deleteName(e) {
+    nameArray.splice(e.currentTarget.dataset.index, 1);
+    localStorage.setItem("names", JSON.stringify(nameArray));
+    updateNameList();
   }
 }
